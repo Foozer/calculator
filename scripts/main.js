@@ -1,3 +1,9 @@
+let buttonClick = document.querySelectorAll("button");
+let display = document.getElementById("output");
+let displayValue = "";
+
+
+
 //functions for basic math operations
 function add (a, b) {
     return a + b;
@@ -33,3 +39,17 @@ function operate (operator, a, b) {
     }
     return calc;
 }
+
+function updateDisplay (id) {
+    display.textContent = id;
+}
+
+function getButtonClicks (){
+    buttonClick.forEach(element => {
+        element.addEventListener('click', (e) => {
+            updateDisplay(element.id);
+        });
+    });
+}
+
+getButtonClicks();
