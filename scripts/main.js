@@ -49,6 +49,18 @@ function updateDisplay (id) {
     console.log(displayValue);
 }
 
+/*
+if number buttons are clicked add to the display until a non-number button is hit and the operator variable is empty.
+if operator button is hit take the display number and store it in a number variable
+    also take the operator and store that in an operator variable
+if there is already a number in the number variable and the operator variable is not empty
+    store the number variable into num1
+if number buttons are clicked add to the display until a non-number button is hit and the operator variable is not empty
+
+*/
+
+
+
 function getButtonClicks (){
     buttonClick.forEach(button => {
         button.addEventListener('click', (e) => {
