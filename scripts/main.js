@@ -1,10 +1,11 @@
 let buttonClick = document.querySelectorAll("button");
 let display = document.getElementById("output");
 let displayValue = "";
-let leftNum = 0;
-let rightNum = 0;
+let num1 = null;
+let num2 = null;
 let nums = ['0','1','2','3','4','5','6','7','8','9'];
 let symbols = ['+', '-', 'x', '/'];
+let op = '';
 
 //functions for basic math operations
 function add (a, b) {
@@ -25,6 +26,7 @@ function divide (a, b) {
 
 function operate (operator, a, b) {
     let calc = 0;
+    console.log(operator, a, b);
     switch(operator) {
         case '+':
             calc = add(a, b);
@@ -32,7 +34,7 @@ function operate (operator, a, b) {
         case '-':
             calc = subtract(a, b);
             break;
-        case '*':
+        case 'x':
             calc = multiply(a, b);
             break;
         case '/':
@@ -64,13 +66,21 @@ if number buttons are clicked add to the display until a non-number button is hi
 function getButtonClicks (){
     buttonClick.forEach(button => {
         button.addEventListener('click', (e) => {
-            if (nums.includes(button.id)){
+            if (nums.includes(button.id) && op === ''){
                 updateDisplay(button.id);
+            } else if (nums.includes(button.id)) {
+                updateDisplay(button.id);
+                num2 = Number(displayValue);
             } else if (symbols.includes(button.id)) {
-                leftNum = Number(displayValue);
-                op = button.id;
+                if (num1 == null) {
+                    num1 = Number(displayValue);
+                    op = button.id;
+                    display.textContent = '';
+                } else {
+                    num2 = Number(displayValue);
+                }
             } else if (button.id == '=') {
-                operate(op, leftNum, rightNum);
+                operate(op, num1, num2);
             }
             
         });
