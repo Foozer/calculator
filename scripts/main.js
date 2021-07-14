@@ -3,9 +3,10 @@ let display = document.getElementById("output");
 let displayValue = "";
 let num1 = null;
 let num2 = null;
-let nums = ['0','1','2','3','4','5','6','7','8','9'];
+let nums = ['0','1','2','3','4','5','6','7','8','9','.'];
 let symbols = ['+', '-', 'x', '/'];
-let op = '';
+let op = null;
+let answer = null;
 
 //functions for basic math operations
 function add (a, b) {
@@ -42,45 +43,48 @@ function operate (operator, a, b) {
             break;
     }
     display.textContent = '';
-    updateDisplay(calc);
+    updateDisplay(round(calc,5));
+    console.log(round(calc,5));
 }
 
+function round(value, decimals) {
+    return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+}
+
+function resetDisplay () {
+    display.textContent = '';
+    displayValue = null;
+}
 function updateDisplay (id) {
     display.textContent += id;
     displayValue = display.textContent;
     console.log(displayValue);
 }
 
-/*
-if number buttons are clicked add to the display until a non-number button is hit and the operator variable is empty.
-if operator button is hit take the display number and store it in a number variable
-    also take the operator and store that in an operator variable
-if there is already a number in the number variable and the operator variable is not empty
-    store the number variable into num1
-if number buttons are clicked add to the display until a non-number button is hit and the operator variable is not empty
-
-*/
-
-
-
 function getButtonClicks (){
     buttonClick.forEach(button => {
         button.addEventListener('click', (e) => {
-            if (nums.includes(button.id) && op === ''){
+            console.log(button.id);
+            if (op == 'calcdone') {
+                resetDisplay();
+                op = null;
+            }
+            if (nums.includes(button.id) && op === null){
                 updateDisplay(button.id);
-            } else if (nums.includes(button.id)) {
+            } else if (nums.includes(button.id) && op != null) {
                 updateDisplay(button.id);
                 num2 = Number(displayValue);
             } else if (symbols.includes(button.id)) {
                 if (num1 == null) {
                     num1 = Number(displayValue);
                     op = button.id;
-                    display.textContent = '';
-                } else {
-                    num2 = Number(displayValue);
+                    resetDisplay();
                 }
             } else if (button.id == '=') {
                 operate(op, num1, num2);
+                op = 'calcdone';
+                num1 = null;
+                num2 = null;
             }
             
         });
