@@ -5,3 +5,62 @@ body {
 h1 {
     font-size: 50px;
 }
+
+.number-button {
+    background-color: rgb(130, 130, 168);
+    padding: 15px 32px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    margin: 2px;
+    text-align: center;
+}
+.operator-button {
+    background-color: rgb(207, 185, 87);
+    padding: 15px 32px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    margin: 2px;
+}
+
+.cancel-button {
+    background-color: rgb(236, 115, 115);
+    padding: 15px 32px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    margin: 2px;
+}
+
+.equals-button {
+    background-color: rgb(82, 202, 152);
+    padding: 15px 32px;
+    display: inline-block;
+    width: 300px;
+    height: 50px;
+    margin: 2px;
+}
+
+#calc-body {
+    background-color: rgb(132, 167, 132);
+    width: 305px;
+    padding: 1px;
+}
+
+#display {
+    width: 305px;
+    height: 50px;
+    
+    
+}
+
+#output {
+    background-color: honeydew;
+    text-align: right;
+    font-size: 30px;
+    height: 40px;
+    border: 2px solid black;
+    
+    
+}
