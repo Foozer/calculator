@@ -45,6 +45,7 @@ function operate (operator, a, b) {
     display.textContent = '';
     updateDisplay(round(calc,5));
     console.log(round(calc,5));
+    return (round(calc,5));
 }
 
 function round(value, decimals) {
@@ -78,6 +79,12 @@ function getButtonClicks (){
                 if (num1 == null) {
                     num1 = Number(displayValue);
                     op = button.id;
+                    resetDisplay();
+                } else {
+                    console.log('yeah boy');
+                    num1 = operate(op, num1, num2)
+                    op = button.id;
+                    num2 = null;
                     resetDisplay();
                 }
             } else if (button.id == '=') {
