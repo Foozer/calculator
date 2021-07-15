@@ -6,8 +6,6 @@ let num2 = null;
 let nums = ['0','1','2','3','4','5','6','7','8','9','.'];
 let symbols = ['+', '-', 'x', '/'];
 let op = null;
-let answer = null;
-let decimal = false;
 
 //functions for basic math operations
 function add (a, b) {
@@ -26,6 +24,7 @@ function divide (a, b) {
     return a / b;
 }
 
+//function for handling which operator has been used
 function operate (operator, a, b) {
     let calc = 0;
     switch(operator) {
@@ -49,24 +48,25 @@ function operate (operator, a, b) {
     return (round(calc,5));
 }
 
+//this does a nice round of the result to ensure the user gets a nice display with not too many decimals.
 function round(value, decimals) {
     return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 }
 
+// resets the display
 function resetDisplay () {
     display.textContent = '';
     displayValue = null;
 }
+
 function updateDisplay (id) {
     if ((!isDecimalInNumber(displayValue) && id == '.') || (id !='.')){
         display.textContent += id;
         displayValue = display.textContent;
-        console.log(displayValue, display.textContent);
         if (display.textContent === 'NaN') {
             display.textContent = ('NO ZERO DIVS!');
         }
     }
-    
 }
 
 function isDecimalInNumber (num){
@@ -102,8 +102,7 @@ function getButtonClicks (){
                 op = 'calcdone';
                 num1 = null;
                 num2 = null;
-            }
-            
+            }            
         });
     });
 }
