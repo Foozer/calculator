@@ -28,7 +28,6 @@ function divide (a, b) {
 
 function operate (operator, a, b) {
     let calc = 0;
-    console.log(operator, a, b);
     switch(operator) {
         case '+':
             calc = add(a, b);
@@ -41,11 +40,12 @@ function operate (operator, a, b) {
             break;
         case '/':
             calc = divide(a, b);
+            if (calc == 0)  {
+            }
             break;
     }
     display.textContent = '';
     updateDisplay(round(calc,5));
-    console.log(round(calc,5));
     return (round(calc,5));
 }
 
@@ -58,16 +58,15 @@ function resetDisplay () {
     displayValue = null;
 }
 function updateDisplay (id) {
-    console.log(isDecimalInNumber(displayValue), id);
     if ((!isDecimalInNumber(displayValue) && id == '.') || (id !='.')){
         display.textContent += id;
         displayValue = display.textContent;
-        console.log(displayValue);
-    } /*else if (id != '.') {
-        display.textContent += id;
-        displayValue = display.textContent;
-        console.log(displayValue);
-    }*/
+        console.log(displayValue, display.textContent);
+        if (display.textContent === 'NaN') {
+            display.textContent = ('NO ZERO DIVS!');
+        }
+    }
+    
 }
 
 function isDecimalInNumber (num){
@@ -78,7 +77,6 @@ function isDecimalInNumber (num){
 function getButtonClicks (){
     buttonClick.forEach(button => {
         button.addEventListener('click', (e) => {
-            console.log(button.id);
             if (op == 'calcdone') {
                 resetDisplay();
                 op = null;
@@ -94,7 +92,6 @@ function getButtonClicks (){
                     op = button.id;
                     resetDisplay();
                 } else {
-                    console.log('yeah boy');
                     num1 = operate(op, num1, num2)
                     op = button.id;
                     num2 = null;
