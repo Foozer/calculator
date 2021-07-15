@@ -7,6 +7,7 @@ let nums = ['0','1','2','3','4','5','6','7','8','9','.'];
 let symbols = ['+', '-', 'x', '/'];
 let op = null;
 let answer = null;
+let decimal = false;
 
 //functions for basic math operations
 function add (a, b) {
@@ -57,9 +58,21 @@ function resetDisplay () {
     displayValue = null;
 }
 function updateDisplay (id) {
-    display.textContent += id;
-    displayValue = display.textContent;
-    console.log(displayValue);
+    console.log(isDecimalInNumber(displayValue), id);
+    if ((!isDecimalInNumber(displayValue) && id == '.') || (id !='.')){
+        display.textContent += id;
+        displayValue = display.textContent;
+        console.log(displayValue);
+    } /*else if (id != '.') {
+        display.textContent += id;
+        displayValue = display.textContent;
+        console.log(displayValue);
+    }*/
+}
+
+function isDecimalInNumber (num){
+    if (displayValue == null) return false;
+    return num.includes('.');
 }
 
 function getButtonClicks (){
